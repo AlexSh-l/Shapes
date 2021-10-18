@@ -1,9 +1,10 @@
-package com.alex.shapes.filereader.implementation;
+package com.alex.shape.filereader.implementation;
 
-import com.alex.shapes.exception.FileReaderException;
-import com.alex.shapes.filereader.ICustomFileReader;
+import com.alex.shape.exception.FileReaderException;
+import com.alex.shape.filereader.ICustomFileReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;

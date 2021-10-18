@@ -1,8 +1,8 @@
-package com.alex.shapes.exception;
+package com.alex.shape.exception;
 
 public class FileReaderException extends Exception {
 
-    public FileReaderException(String message){
+    public FileReaderException(String message) {
         super(message);
     }
 

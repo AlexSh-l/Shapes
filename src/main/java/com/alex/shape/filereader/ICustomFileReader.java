@@ -1,6 +1,7 @@
-package com.alex.shapes.filereader;
+package com.alex.shape.filereader;
 
-import com.alex.shapes.exception.FileReaderException;
+import com.alex.shape.exception.FileReaderException;
+
 import java.util.List;
 import java.util.Optional;
 
