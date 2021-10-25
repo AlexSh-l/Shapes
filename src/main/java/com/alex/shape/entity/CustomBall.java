@@ -1,20 +1,20 @@
 package com.alex.shape.entity;
 
 import com.alex.shape.observer.FigureEvent;
-import com.alex.shape.observer.ICustomObserver;
-import com.alex.shape.observer.IObservable;
+import com.alex.shape.observer.CustomObserver;
+import com.alex.shape.observer.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomBall extends CustomFigure implements IObservable {
+public class CustomBall extends CustomFigure implements Observable {
 
     private double ballRadius;
     private double volumeRatioXY;
     private double volumeRatioXZ;
     private double volumeRatioYZ;
 
-    private final List<ICustomObserver> observers = new ArrayList<>();
+    private final List<CustomObserver> observers = new ArrayList<>();
 
     public CustomBall(int id, String name, CustomDot center, double radius) {
         super.setId(id);
@@ -66,20 +66,20 @@ public class CustomBall extends CustomFigure implements IObservable {
     @Override
     public void notifyObservers() {
         FigureEvent event = new FigureEvent(this);
-        for (ICustomObserver observer : observers) {
+        for (CustomObserver observer : observers) {
             observer.parameterChanged(event);
         }
     }
 
     @Override
-    public void attach(ICustomObserver observer) {
+    public void attach(CustomObserver observer) {
         if (observer != null) {
             observers.add(observer);
         }
     }
 
     @Override
-    public void detach(ICustomObserver observer) {
+    public void detach(CustomObserver observer) {
         observers.remove(observer);
     }
 

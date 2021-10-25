@@ -10,7 +10,14 @@ import java.util.List;
 public class CustomRepository {
 
     private static CustomRepository instance;
-    private static final Comparator<CustomFigure> comparator = new IdComparator().thenComparing(new NameComparator().thenComparing(new XComparator().thenComparing(new YComparator().thenComparing(new ZComparator().thenComparing(new PerimeterComparator().thenComparing(new SquareComparator().thenComparing(new VolumeComparator())))))));
+    private static final Comparator<CustomFigure> comparator = new IdComparator()
+            .thenComparing(new NameComparator()
+                    .thenComparing(new XComparator()
+                            .thenComparing(new YComparator()
+                                    .thenComparing(new ZComparator()
+                                            .thenComparing(new PerimeterComparator()
+                                                    .thenComparing(new SquareComparator()
+                                                            .thenComparing(new VolumeComparator())))))));
     private final List<CustomFigure> warehouse = new ArrayList<>();
 
     private CustomRepository() {

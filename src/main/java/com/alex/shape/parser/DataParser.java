@@ -2,7 +2,7 @@ package com.alex.shape.parser;
 
 import java.util.List;
 
-public interface IDataParser {
+public interface DataParser {
 
     String REGEX_SPLITTER = "\\s+";
 

@@ -5,7 +5,7 @@ import com.alex.shape.exception.FileReaderException;
 import java.util.List;
 import java.util.Optional;
 
-public interface ICustomFileReader {
+public interface CustomFileReader {
 
     String DEFAULT_FILE_PATH = "./data/numbers.txt";
 

@@ -1,4 +1,4 @@
-import com.alex.shape.parser.implementation.DataParser;
+import com.alex.shape.parser.implementation.DataParserImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataParserTest {
+public class DataParserImplTest {
 
     private static List<String> data;
     private static double[] array;
@@ -25,7 +25,7 @@ public class DataParserTest {
 
     @Test
     public void parseDataTest() {
-        DataParser parser = new DataParser();
+        DataParserImpl parser = new DataParserImpl();
         double[] expected = array;
         double[] actual = parser.parseData(data);
         Assert.assertArrayEquals(expected, actual, 0.5);

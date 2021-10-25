@@ -1,16 +1,16 @@
 import com.alex.shape.entity.CustomBall;
-import com.alex.shape.validator.implementation.CustomValidator;
+import com.alex.shape.validator.implementation.CustomValidatorImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CustomValidatorTest {
+public class CustomValidatorImplTest {
 
-    private static CustomValidator validator;
+    private static CustomValidatorImpl validator;
 
     @BeforeClass
     public static void initializeValidator(){
-        validator = new CustomValidator();
+        validator = new CustomValidatorImpl();
     }
 
     @Test

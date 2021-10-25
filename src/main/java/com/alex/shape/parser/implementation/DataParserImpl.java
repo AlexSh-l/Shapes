@@ -1,19 +1,19 @@
 package com.alex.shape.parser.implementation;
 
-import com.alex.shape.parser.IDataParser;
-import com.alex.shape.validator.implementation.CustomValidator;
+import com.alex.shape.parser.DataParser;
+import com.alex.shape.validator.implementation.CustomValidatorImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataParser implements IDataParser {
+public class DataParserImpl implements DataParser {
 
     @Override
     public double[] parseData(List<String> numbersListString) {
         ArrayList<Double> list = new ArrayList<>();
         int length = 0;
         if (numbersListString != null) {
-            CustomValidator customValidator = new CustomValidator();
+            CustomValidatorImpl customValidator = new CustomValidatorImpl();
             for (String line : numbersListString) {
                 if (customValidator.validateArray(line)) {
                     String stringNumber = customValidator.getMatcher().group();

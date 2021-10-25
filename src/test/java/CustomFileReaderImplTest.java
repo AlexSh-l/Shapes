@@ -1,5 +1,5 @@
 import com.alex.shape.exception.FileReaderException;
-import com.alex.shape.filereader.implementation.CustomFileReader;
+import com.alex.shape.filereader.implementation.CustomFileReaderImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testng.Assert;
@@ -7,7 +7,7 @@ import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomFileReaderTest {
+public class CustomFileReaderImplTest {
 
     private static List<String> list;
 
@@ -24,7 +24,7 @@ public class CustomFileReaderTest {
 
     @Test
     public void readFileTest() {
-        CustomFileReader customFileReader = new CustomFileReader();
+        CustomFileReaderImpl customFileReader = new CustomFileReaderImpl();
         try {
             List<String> expected = list;
             if (customFileReader.readFile().isPresent()) {

@@ -1,12 +1,12 @@
 package com.alex.shape.validator.implementation;
 
 import com.alex.shape.entity.CustomBall;
-import com.alex.shape.validator.ICustomValidator;
+import com.alex.shape.validator.CustomValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CustomValidator implements ICustomValidator {
+public class CustomValidatorImpl implements CustomValidator {
 
     private Matcher matcher;
 

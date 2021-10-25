@@ -1,6 +1,6 @@
 package com.alex.shape.validator;
 
-public interface ICustomValidator {
+public interface CustomValidator {
 
     String REGEX_NUMBERS = "^([\\-]?[\\d]+[\\.]?([ ]*))*$";
 

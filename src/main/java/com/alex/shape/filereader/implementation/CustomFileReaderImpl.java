@@ -1,7 +1,7 @@
 package com.alex.shape.filereader.implementation;
 
 import com.alex.shape.exception.FileReaderException;
-import com.alex.shape.filereader.ICustomFileReader;
+import com.alex.shape.filereader.CustomFileReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class CustomFileReader implements ICustomFileReader {
+public class CustomFileReaderImpl implements CustomFileReader {
 
     private static final Logger logger = LogManager.getLogger();
 

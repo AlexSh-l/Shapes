@@ -7,10 +7,10 @@ import com.alex.shape.entity.CustomFigure;
 import com.alex.shape.entity.factory.FigureFactory;
 import com.alex.shape.entity.factory.FigureType;
 import com.alex.shape.exception.FileReaderException;
-import com.alex.shape.filereader.implementation.CustomFileReader;
-import com.alex.shape.observer.ICustomObserver;
+import com.alex.shape.filereader.implementation.CustomFileReaderImpl;
+import com.alex.shape.observer.CustomObserver;
 import com.alex.shape.observer.implementation.FigureObserver;
-import com.alex.shape.parser.implementation.DataParser;
+import com.alex.shape.parser.implementation.DataParserImpl;
 import com.alex.shape.repository.CustomRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,13 +25,13 @@ public class Main {
 
     public static void main(String[] args) {
         List<String> fileContent = new ArrayList<>();
-        CustomFileReader fileReader = new CustomFileReader();
+        CustomFileReaderImpl fileReader = new CustomFileReaderImpl();
         try {
             fileContent = fileReader.readFile().get();
         } catch (FileReaderException e) {
             logger.error("FileReader exception", e);
         }
-        DataParser dataParser = new DataParser();
+        DataParserImpl dataParser = new DataParserImpl();
         double[] parsedData = dataParser.parseData(fileContent);
         logger.info(Arrays.toString(parsedData));
         CustomRepository repository = CustomRepository.getInstance();
@@ -52,7 +52,7 @@ public class Main {
         actions.squareCalculate(newBall);
         actions.volumeCalculate(newBall);
         logger.info(newBall.toString());
-        ICustomObserver observer = new FigureObserver();
+        CustomObserver observer = new FigureObserver();
         newBall.attach(observer);
         newBall.setBallRadius(9.8);
         logger.info(newBall.toString());

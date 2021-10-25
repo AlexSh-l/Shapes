@@ -3,10 +3,10 @@ package com.alex.shape.observer.implementation;
 import com.alex.shape.action.implementation.BallActions;
 import com.alex.shape.entity.CustomFigure;
 import com.alex.shape.observer.FigureEvent;
-import com.alex.shape.observer.ICustomObserver;
+import com.alex.shape.observer.CustomObserver;
 import com.alex.shape.repository.CustomRepository;
 
-public class FigureObserver implements ICustomObserver {
+public class FigureObserver implements CustomObserver {
 
     @Override
     public void parameterChanged(FigureEvent event) {

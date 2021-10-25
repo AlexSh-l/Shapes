@@ -1,6 +1,6 @@
 package com.alex.shape.observer;
 
-public interface ICustomObserver {
+public interface CustomObserver {
 
     void parameterChanged(FigureEvent event);
 }
