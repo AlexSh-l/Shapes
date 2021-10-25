@@ -7,6 +7,7 @@ import com.alex.shape.observer.ICustomObserver;
 import com.alex.shape.repository.CustomRepository;
 
 public class FigureObserver implements ICustomObserver {
+
     @Override
     public void parameterChanged(FigureEvent event) {
         CustomRepository repository = CustomRepository.getInstance();

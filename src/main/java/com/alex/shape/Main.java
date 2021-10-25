@@ -1,7 +1,9 @@
 package com.alex.shape;
 
+import com.alex.shape.action.implementation.BallActions;
 import com.alex.shape.entity.CustomBall;
 import com.alex.shape.entity.CustomDot;
+import com.alex.shape.entity.CustomFigure;
 import com.alex.shape.entity.factory.FigureFactory;
 import com.alex.shape.entity.factory.FigureType;
 import com.alex.shape.exception.FileReaderException;
@@ -32,27 +34,29 @@ public class Main {
         DataParser dataParser = new DataParser();
         double[] parsedData = dataParser.parseData(fileContent);
         logger.info(Arrays.toString(parsedData));
-
-        var repository = CustomRepository.getInstance();
-        CustomDot dot = new CustomDot(2.0, 2.0, 2.0);
-        CustomBall ball = new CustomBall(4, "ball", dot, 5.0);
-        ball.setId(5);
+        CustomRepository repository = CustomRepository.getInstance();
+        CustomDot center = new CustomDot(parsedData[0], parsedData[1], parsedData[2]);
+        CustomBall ball = new CustomBall(4, "ball", center, parsedData[3]);
         repository.add(ball);
-
+        logger.info(ball.toString());
         FigureFactory factory = FigureFactory.getInstance();
-        var figure = factory.creteFigure(FigureType.BALL, 4.0);
+        CustomFigure figure = factory.creteFigure(FigureType.BALL);
         figure.setId(3);
         figure.setName("ball2");
-        figure.setFigureCenter(dot);
+        figure.setFigureCenter(center);
         repository.add(figure);
-        var newBall = (CustomBall) figure;
+        CustomBall newBall = (CustomBall) figure;
+        newBall.setBallRadius(4.0);
+        BallActions actions = new BallActions();
+        actions.perimeterCalculate(newBall);
+        actions.squareCalculate(newBall);
+        actions.volumeCalculate(newBall);
+        logger.info(newBall.toString());
         ICustomObserver observer = new FigureObserver();
         newBall.attach(observer);
         newBall.setBallRadius(9.8);
-
-        String figureString = figure.toString();
-        int hash = figure.hashCode();
-
-        var fl = repository.contains(null);
+        logger.info(newBall.toString());
+        repository.sort();
+        logger.info(repository.toString());
     }
 }

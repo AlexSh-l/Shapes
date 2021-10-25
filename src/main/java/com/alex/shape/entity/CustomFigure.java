@@ -63,6 +63,9 @@ public abstract class CustomFigure {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", figureCenter=").append(figureCenter);
+        sb.append(", perimeter=").append(perimeter);
+        sb.append(", square=").append(square);
+        sb.append(", volume=").append(volume);
         sb.append('}');
         return sb.toString();
     }

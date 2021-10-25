@@ -16,7 +16,7 @@ public class DataParser implements IDataParser {
             CustomValidator customValidator = new CustomValidator();
             for (String line : numbersListString) {
                 if (customValidator.validateArray(line)) {
-                    String stringNumber = customValidator.matcher.group();
+                    String stringNumber = customValidator.getMatcher().group();
                     String[] numbersString = stringNumber.split(REGEX_SPLITTER);
                     for (String number : numbersString) {
                         Double doubleNumber = Double.parseDouble(number);

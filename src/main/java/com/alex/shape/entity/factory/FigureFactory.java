@@ -17,14 +17,10 @@ public class FigureFactory {
         return instance;
     }
 
-    public CustomFigure creteFigure(FigureType figureType, double... params) {
+    public CustomFigure creteFigure(FigureType figureType) {
         switch (figureType) {
             case BALL:
-                CustomBall ball = new CustomBall();
-                if (params.length > 0) {
-                    ball.setBallRadius(params[0]);
-                }
-                return ball;
+                return new CustomBall();
         }
         return null;
     }
