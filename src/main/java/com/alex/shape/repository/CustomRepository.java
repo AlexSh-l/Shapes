@@ -2,10 +2,13 @@ package com.alex.shape.repository;
 
 import com.alex.shape.comparator.*;
 import com.alex.shape.entity.CustomFigure;
+import com.alex.shape.specification.Specification;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class CustomRepository {
 
@@ -14,11 +17,8 @@ public class CustomRepository {
             .thenComparing(new NameComparator()
                     .thenComparing(new XComparator()
                             .thenComparing(new YComparator()
-                                    .thenComparing(new ZComparator()
-                                            .thenComparing(new PerimeterComparator()
-                                                    .thenComparing(new SquareComparator()
-                                                            .thenComparing(new VolumeComparator())))))));
-    private final List<CustomFigure> warehouse = new ArrayList<>();
+                                    .thenComparing(new ZComparator()))));
+    private final List<CustomFigure> repository = new ArrayList<>();
 
     private CustomRepository() {
     }
@@ -31,37 +31,43 @@ public class CustomRepository {
     }
 
     public void add(CustomFigure figure) {
-        warehouse.add(figure);
+        repository.add(figure);
     }
 
     public void remove(CustomFigure figure) {
-        warehouse.remove(figure);
+        repository.remove(figure);
     }
 
-    public void removeById(int id) {
-        warehouse.removeIf(figure -> figure.getId() == id);
+    public void removeById(UUID id) {
+        repository.removeIf(figure -> figure.getId() == id);
     }
 
     public boolean contains(CustomFigure figure) {
-        return warehouse.contains(figure);
+        return repository.contains(figure);
     }
 
     public void sort() {
-        warehouse.sort(comparator);
+        repository.sort(comparator);
     }
 
-    public Object[] toArray(){
-        return this.warehouse.toArray();
+    public Object[] toArray() {
+        return this.repository.toArray();
     }
 
-    public void clear(){
-        warehouse.clear();
+    public void clear() {
+        repository.clear();
+    }
+
+    public List<CustomFigure> query(Specification specification) {
+        return repository.stream()
+                .filter(o -> specification.specify(o))
+                .collect(Collectors.toList());
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CustomRepository{");
-        sb.append("warehouse=").append(warehouse);
+        sb.append("warehouse=").append(repository);
         sb.append('}');
         return sb.toString();
     }

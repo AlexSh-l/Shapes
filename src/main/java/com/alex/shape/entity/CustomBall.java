@@ -6,6 +6,7 @@ import com.alex.shape.observer.Observable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CustomBall extends CustomFigure implements Observable {
 
@@ -16,7 +17,8 @@ public class CustomBall extends CustomFigure implements Observable {
 
     private final List<CustomObserver> observers = new ArrayList<>();
 
-    public CustomBall(int id, String name, CustomDot center, double radius) {
+    public CustomBall(String name, CustomDot center, double radius) {
+        UUID id = UUID.randomUUID();
         super.setId(id);
         super.setName(name);
         super.setFigureCenter(center);
@@ -24,6 +26,8 @@ public class CustomBall extends CustomFigure implements Observable {
     }
 
     public CustomBall() {
+        UUID id = UUID.randomUUID();
+        super.setId(id);
     }
 
     public double getBallRadius() {
@@ -90,13 +94,41 @@ public class CustomBall extends CustomFigure implements Observable {
         sb.append(", name='").append(super.getName()).append('\'');
         sb.append(", figureCenter=").append(super.getFigureCenter());
         sb.append(", ballRadius=").append(ballRadius);
-        sb.append(", perimeter=").append(super.getPerimeter());
-        sb.append(", square=").append(super.getSquare());
-        sb.append(", volume=").append(super.getVolume());
         sb.append(", volumeRatioXY=").append(volumeRatioXY);
         sb.append(", volumeRatioXZ=").append(volumeRatioXZ);
         sb.append(", volumeRatioYZ=").append(volumeRatioYZ);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        CustomBall that = (CustomBall) o;
+
+        if (Double.compare(that.ballRadius, ballRadius) != 0) return false;
+        if (Double.compare(that.volumeRatioXY, volumeRatioXY) != 0) return false;
+        if (Double.compare(that.volumeRatioXZ, volumeRatioXZ) != 0) return false;
+        if (Double.compare(that.volumeRatioYZ, volumeRatioYZ) != 0) return false;
+        return observers != null ? observers.equals(that.observers) : that.observers == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        long temp;
+        temp = Double.doubleToLongBits(ballRadius);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(volumeRatioXY);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(volumeRatioXZ);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(volumeRatioYZ);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (observers != null ? observers.hashCode() : 0);
+        return result;
     }
 }

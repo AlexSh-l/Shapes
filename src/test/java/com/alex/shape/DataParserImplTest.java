@@ -1,4 +1,6 @@
-import com.alex.shape.parser.implementation.DataParserImpl;
+package com.alex.shape;
+
+import com.alex.shape.parser.impl.DataParserImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -1,30 +1,34 @@
-package com.alex.shape.action.implementation;
+package com.alex.shape.action.impl;
 
 import com.alex.shape.action.FigureActions;
 import com.alex.shape.entity.CustomBall;
 import com.alex.shape.entity.CustomFigure;
+import com.alex.shape.entity.FigureParameter;
+import com.alex.shape.warehouse.CustomWarehouse;
 
 public class BallActions implements FigureActions {
 
     @Override
-    public void squareCalculate(CustomFigure figure) {
+    public double squareCalculate(CustomFigure figure) {
         CustomBall ball = (CustomBall) figure;
-        figure.setSquare(4.0 * Math.PI * Math.pow(ball.getBallRadius(), 2.0));
+        return 4.0 * Math.PI * Math.pow(ball.getBallRadius(), 2.0);
     }
 
     @Override
-    public void volumeCalculate(CustomFigure figure) {
+    public double volumeCalculate(CustomFigure figure) {
         CustomBall ball = (CustomBall) figure;
-        figure.setVolume(4.0 / 3.0 * Math.PI * Math.pow(ball.getBallRadius(), 3.0));
+        return 4.0 / 3.0 * Math.PI * Math.pow(ball.getBallRadius(), 3.0);
     }
 
     @Override
-    public void perimeterCalculate(CustomFigure figure) {
+    public double perimeterCalculate(CustomFigure figure) {
         CustomBall ball = (CustomBall) figure;
-        figure.setPerimeter(2.0 * Math.PI * ball.getBallRadius());
+        return 2.0 * Math.PI * ball.getBallRadius();
     }
 
     public void volumeRatioXY(CustomFigure figure) {
+        CustomWarehouse instance = CustomWarehouse.getInstance();
+        FigureParameter figureParameter = instance.get(figure.getId());
         CustomBall ball = (CustomBall) figure;
         double volumeRatio;
         double ballCenterZ = ball.getFigureCenter().getZ();
@@ -32,14 +36,14 @@ public class BallActions implements FigureActions {
             double segmentHeight = ballCenterZ - ball.getBallRadius();
             if (segmentHeight < 0) {
                 double segmentVolume = Math.PI * Math.pow(segmentHeight, 2) * (3 * ball.getBallRadius() - segmentHeight) / 3;
-                volumeRatio = segmentVolume / (ball.getVolume() - segmentVolume);
+                volumeRatio = segmentVolume / (figureParameter.getVolume() - segmentVolume);
                 ball.setVolumeRatioXY(volumeRatio);
             }
         } else if (Double.compare(ballCenterZ, 0.0) < 0) {
             double segmentHeight = ballCenterZ + ball.getBallRadius();
             if (segmentHeight > 0) {
                 double segmentVolume = Math.PI * Math.pow(segmentHeight, 2) * (3 * ball.getBallRadius() - segmentHeight) / 3;
-                volumeRatio = segmentVolume / (ball.getVolume() - segmentVolume);
+                volumeRatio = segmentVolume / (figureParameter.getVolume() - segmentVolume);
                 ball.setVolumeRatioXY(volumeRatio);
             }
         } else if (Double.compare(ballCenterZ, 0.0) == 0) {
@@ -49,6 +53,8 @@ public class BallActions implements FigureActions {
     }
 
     public void volumeRatioXZ(CustomFigure figure) {
+        CustomWarehouse instance = CustomWarehouse.getInstance();
+        FigureParameter figureParameter = instance.get(figure.getId());
         CustomBall ball = (CustomBall) figure;
         double volumeRatio;
         double ballCenterY = ball.getFigureCenter().getY();
@@ -56,14 +62,14 @@ public class BallActions implements FigureActions {
             double segmentHeight = ballCenterY - ball.getBallRadius();
             if (segmentHeight < 0) {
                 double segmentVolume = Math.PI * Math.pow(segmentHeight, 2) * (3 * ball.getBallRadius() - segmentHeight) / 3;
-                volumeRatio = segmentVolume / (ball.getVolume() - segmentVolume);
+                volumeRatio = segmentVolume / (figureParameter.getVolume() - segmentVolume);
                 ball.setVolumeRatioXZ(volumeRatio);
             }
         } else if (Double.compare(ballCenterY, 0.0) < 0) {
             double segmentHeight = ballCenterY + ball.getBallRadius();
             if (segmentHeight > 0) {
                 double segmentVolume = Math.PI * Math.pow(segmentHeight, 2) * (3 * ball.getBallRadius() - segmentHeight) / 3;
-                volumeRatio = segmentVolume / (ball.getVolume() - segmentVolume);
+                volumeRatio = segmentVolume / (figureParameter.getVolume() - segmentVolume);
                 ball.setVolumeRatioXZ(volumeRatio);
             }
         } else if (Double.compare(ballCenterY, 0.0) == 0) {
@@ -73,6 +79,8 @@ public class BallActions implements FigureActions {
     }
 
     public void volumeRatioYZ(CustomFigure figure) {
+        CustomWarehouse instance = CustomWarehouse.getInstance();
+        FigureParameter figureParameter = instance.get(figure.getId());
         CustomBall ball = (CustomBall) figure;
         double volumeRatio;
         double ballCenterX = ball.getFigureCenter().getX();
@@ -80,14 +88,14 @@ public class BallActions implements FigureActions {
             double segmentHeight = ballCenterX - ball.getBallRadius();
             if (segmentHeight < 0) {
                 double segmentVolume = Math.PI * Math.pow(segmentHeight, 2) * (3 * ball.getBallRadius() - segmentHeight) / 3;
-                volumeRatio = segmentVolume / (ball.getVolume() - segmentVolume);
+                volumeRatio = segmentVolume / (figureParameter.getVolume() - segmentVolume);
                 ball.setVolumeRatioYZ(volumeRatio);
             }
         } else if (Double.compare(ballCenterX, 0.0) < 0) {
             double segmentHeight = ballCenterX + ball.getBallRadius();
             if (segmentHeight > 0) {
                 double segmentVolume = Math.PI * Math.pow(segmentHeight, 2) * (3 * ball.getBallRadius() - segmentHeight) / 3;
-                volumeRatio = segmentVolume / (ball.getVolume() - segmentVolume);
+                volumeRatio = segmentVolume / (figureParameter.getVolume() - segmentVolume);
                 ball.setVolumeRatioYZ(volumeRatio);
             }
         } else if (Double.compare(ballCenterX, 0.0) == 0) {

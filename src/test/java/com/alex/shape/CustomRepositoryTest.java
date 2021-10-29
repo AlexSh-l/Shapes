@@ -1,3 +1,5 @@
+package com.alex.shape;
+
 import com.alex.shape.comparator.*;
 import com.alex.shape.entity.CustomBall;
 import com.alex.shape.entity.CustomDot;
@@ -21,12 +23,6 @@ public class CustomRepositoryTest {
     public static void initializeRepository() {
         expected = new ArrayList<>();
         actual = CustomRepository.getInstance();
-        /*CustomFigure figure = factory.creteFigure(FigureType.BALL);
-        ball = (CustomBall) figure;
-        ball.setId(1);
-        ball.setName("ball");
-        ball.setFigureCenter(center);
-        ball.setBallRadius(5.0);*/
     }
 
     @Test
@@ -34,14 +30,14 @@ public class CustomRepositoryTest {
         expected.clear();
         CustomDot center = new CustomDot(2.0, 2.0, 2.0);
         actual.clear();
-        CustomBall ball = new CustomBall(2, "ball", center, 5);
+        CustomBall ball = new CustomBall("ball", center, 5);
         actual.add(ball);
         expected.add(ball);
-        ball = new CustomBall(1, "ball2", center, 7);
+        ball = new CustomBall("ball2", center, 7);
         actual.add(ball);
         expected.add(ball);
         center = new CustomDot(5.0, 3.0, 9.2);
-        ball = new CustomBall(5, "ball3", center, 9);
+        ball = new CustomBall("ball3", center, 9);
         actual.add(ball);
         expected.add(ball);
         boolean areContentsEqual = Arrays.deepEquals(expected.toArray(), actual.toArray());
@@ -53,10 +49,10 @@ public class CustomRepositoryTest {
         expected.clear();
         CustomDot center = new CustomDot(2.0, 2.0, 2.0);
         actual.clear();
-        CustomBall ball = new CustomBall(2, "ball", center, 5);
+        CustomBall ball = new CustomBall("ball", center, 5);
         actual.add(ball);
         expected.add(ball);
-        ball = new CustomBall(1, "ball2", center, 7);
+        ball = new CustomBall("ball2", center, 7);
         actual.add(ball);
         actual.remove(ball);
         boolean areContentsEqual = Arrays.deepEquals(expected.toArray(), actual.toArray());
@@ -67,7 +63,7 @@ public class CustomRepositoryTest {
     public void containsTest() {
         actual.clear();
         CustomDot center = new CustomDot(2.0, 2.0, 2.0);
-        CustomBall ball = new CustomBall(2, "ball", center, 5);
+        CustomBall ball = new CustomBall("ball", center, 5);
         actual.add(ball);
         Assert.assertTrue(actual.contains(ball));
     }
@@ -79,16 +75,13 @@ public class CustomRepositoryTest {
                 .thenComparing(new NameComparator()
                         .thenComparing(new XComparator()
                                 .thenComparing(new YComparator()
-                                        .thenComparing(new ZComparator()
-                                                .thenComparing(new PerimeterComparator()
-                                                        .thenComparing(new SquareComparator()
-                                                                .thenComparing(new VolumeComparator())))))));
+                                        .thenComparing(new ZComparator()))));
         CustomDot center = new CustomDot(2.0, 2.0, 2.0);
         actual.clear();
-        CustomBall ball = new CustomBall(2, "ball", center, 5);
+        CustomBall ball = new CustomBall("ball", center, 5);
         actual.add(ball);
         expected.add(ball);
-        ball = new CustomBall(1, "ball2", center, 7);
+        ball = new CustomBall("ball2", center, 7);
         actual.add(ball);
         expected.add(ball);
         actual.sort();

@@ -1,15 +1,14 @@
 package com.alex.shape.entity;
 
+import java.util.UUID;
+
 public abstract class CustomFigure {
 
-    private int id;
+    private UUID id;
     private String name;
     private CustomDot figureCenter;
-    private double perimeter;
-    private double square;
-    private double volume;
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -21,19 +20,7 @@ public abstract class CustomFigure {
         return figureCenter;
     }
 
-    public double getPerimeter() {
-        return perimeter;
-    }
-
-    public double getSquare() {
-        return square;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public void setId(int id) {
+    protected void setId(UUID id) {
         this.id = id;
     }
 
@@ -45,27 +32,12 @@ public abstract class CustomFigure {
         this.figureCenter = figureCenter;
     }
 
-    public void setPerimeter(double perimeter) {
-        this.perimeter = perimeter;
-    }
-
-    public void setSquare(double square) {
-        this.square = square;
-    }
-
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CustomFigure{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", figureCenter=").append(figureCenter);
-        sb.append(", perimeter=").append(perimeter);
-        sb.append(", square=").append(square);
-        sb.append(", volume=").append(volume);
         sb.append('}');
         return sb.toString();
     }
@@ -82,7 +54,7 @@ public abstract class CustomFigure {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (figureCenter != null ? figureCenter.hashCode() : 0);
         return result;

@@ -1,7 +1,7 @@
-package com.alex.shape.parser.implementation;
+package com.alex.shape.parser.impl;
 
 import com.alex.shape.parser.DataParser;
-import com.alex.shape.validator.implementation.CustomValidatorImpl;
+import com.alex.shape.validator.impl.CustomValidatorImpl;
 
 import java.util.ArrayList;
 import java.util.List;

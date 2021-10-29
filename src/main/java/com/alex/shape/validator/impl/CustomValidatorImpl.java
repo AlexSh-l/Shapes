@@ -1,4 +1,4 @@
-package com.alex.shape.validator.implementation;
+package com.alex.shape.validator.impl;
 
 import com.alex.shape.entity.CustomBall;
 import com.alex.shape.validator.CustomValidator;

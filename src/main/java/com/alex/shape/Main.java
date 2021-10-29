@@ -1,17 +1,20 @@
 package com.alex.shape;
 
-import com.alex.shape.action.implementation.BallActions;
 import com.alex.shape.entity.CustomBall;
 import com.alex.shape.entity.CustomDot;
 import com.alex.shape.entity.CustomFigure;
+import com.alex.shape.entity.FigureParameter;
 import com.alex.shape.entity.factory.FigureFactory;
 import com.alex.shape.entity.factory.FigureType;
 import com.alex.shape.exception.FileReaderException;
-import com.alex.shape.filereader.implementation.CustomFileReaderImpl;
+import com.alex.shape.filereader.impl.CustomFileReaderImpl;
 import com.alex.shape.observer.CustomObserver;
-import com.alex.shape.observer.implementation.FigureObserver;
-import com.alex.shape.parser.implementation.DataParserImpl;
+import com.alex.shape.observer.impl.FigureObserver;
+import com.alex.shape.parser.impl.DataParserImpl;
 import com.alex.shape.repository.CustomRepository;
+import com.alex.shape.specification.Specification;
+import com.alex.shape.specification.impl.SpecificationByName;
+import com.alex.shape.warehouse.CustomWarehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,28 +38,29 @@ public class Main {
         double[] parsedData = dataParser.parseData(fileContent);
         logger.info(Arrays.toString(parsedData));
         CustomRepository repository = CustomRepository.getInstance();
+        CustomWarehouse warehouse = CustomWarehouse.getInstance();
+        FigureParameter figureParameter = new FigureParameter();
         CustomDot center = new CustomDot(parsedData[0], parsedData[1], parsedData[2]);
-        CustomBall ball = new CustomBall(4, "ball", center, parsedData[3]);
+        CustomBall ball = new CustomBall("ball", center, parsedData[3]);
         repository.add(ball);
         logger.info(ball.toString());
         FigureFactory factory = FigureFactory.getInstance();
         CustomFigure figure = factory.creteFigure(FigureType.BALL);
-        figure.setId(3);
         figure.setName("ball2");
         figure.setFigureCenter(center);
         repository.add(figure);
         CustomBall newBall = (CustomBall) figure;
         newBall.setBallRadius(4.0);
-        BallActions actions = new BallActions();
-        actions.perimeterCalculate(newBall);
-        actions.squareCalculate(newBall);
-        actions.volumeCalculate(newBall);
-        logger.info(newBall.toString());
+        warehouse.put(newBall);
+        logger.info(warehouse.toString());
         CustomObserver observer = new FigureObserver();
         newBall.attach(observer);
         newBall.setBallRadius(9.8);
         logger.info(newBall.toString());
         repository.sort();
         logger.info(repository.toString());
+        Specification specificationByName = new SpecificationByName("ball");
+        List<CustomFigure> figureQuerryBall = repository.query(specificationByName);
+        logger.info(figureQuerryBall.toString());
     }
 }

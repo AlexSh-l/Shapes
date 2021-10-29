@@ -15,12 +15,6 @@ public class IdComparator implements Comparator<CustomFigure> {
         } else if (figure2 == null) {
             return 1;
         }
-        if (figure1.getId() > figure2.getId()) {
-            return 1;
-        } else if (figure1.getId() < figure2.getId()) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return figure1.getId().compareTo(figure2.getId());
     }
 }

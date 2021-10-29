@@ -4,9 +4,9 @@ import com.alex.shape.entity.CustomFigure;
 
 public interface FigureActions {
 
-    void squareCalculate(CustomFigure figure);
+    double squareCalculate(CustomFigure figure);
 
-    void volumeCalculate(CustomFigure figure);
+    double volumeCalculate(CustomFigure figure);
 
-    void perimeterCalculate(CustomFigure figure);
+    double perimeterCalculate(CustomFigure figure);
 }

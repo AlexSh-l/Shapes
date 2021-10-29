@@ -1,5 +1,7 @@
+package com.alex.shape;
+
 import com.alex.shape.exception.FileReaderException;
-import com.alex.shape.filereader.implementation.CustomFileReaderImpl;
+import com.alex.shape.filereader.impl.CustomFileReaderImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testng.Assert;

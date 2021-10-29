@@ -1,4 +1,4 @@
-package com.alex.shape.filereader.implementation;
+package com.alex.shape.filereader.impl;
 
 import com.alex.shape.exception.FileReaderException;
 import com.alex.shape.filereader.CustomFileReader;

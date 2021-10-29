@@ -1,5 +1,7 @@
+package com.alex.shape;
+
 import com.alex.shape.entity.CustomBall;
-import com.alex.shape.validator.implementation.CustomValidatorImpl;
+import com.alex.shape.validator.impl.CustomValidatorImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
