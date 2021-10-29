@@ -11,7 +11,7 @@ import java.util.UUID;
 public class CustomWarehouse {
 
     private static CustomWarehouse instance;
-    private final HashMap<UUID, FigureParameter> map = new HashMap<>();
+    private final HashMap<UUID, FigureParameter> warehouse = new HashMap<>();
 
     private CustomWarehouse() {
 
@@ -25,7 +25,7 @@ public class CustomWarehouse {
     }
 
     public void put(UUID uuid, FigureParameter figureParameter) {
-        map.put(uuid, figureParameter);
+        warehouse.put(uuid, figureParameter);
     }
 
     public void put(CustomFigure figure) {
@@ -41,25 +41,25 @@ public class CustomWarehouse {
     }
 
     public FigureParameter get(UUID uuid) {
-        return map.get(uuid);
+        return warehouse.get(uuid);
     }
 
     public void remove(UUID uuid, FigureParameter figureParameter) {
-        map.remove(uuid, figureParameter);
+        warehouse.remove(uuid, figureParameter);
     }
 
     public void remove(UUID uuid) {
-        map.remove(uuid);
+        warehouse.remove(uuid);
     }
 
     public void clear() {
-        map.clear();
+        warehouse.clear();
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CustomWarehouse{");
-        sb.append("map=").append(map);
+        sb.append("map=").append(warehouse);
         sb.append('}');
         return sb.toString();
     }
